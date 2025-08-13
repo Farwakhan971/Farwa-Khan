@@ -155,7 +155,6 @@ window.addEventListener("scroll", () => {
     icons.classList.remove("active");
   }
 });
-
 function openProjectModal(title, description, imageUrls, techStack = []) {
   document.getElementById("modalTitle").textContent = title;
   document.getElementById("modalDescription").textContent = description;
@@ -163,7 +162,7 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
   // Image carousel
   const carouselInner = document.getElementById("carouselInner");
   carouselInner.innerHTML = "";
-  
+
   imageUrls.forEach((url, index) => {
     const div = document.createElement("div");
     div.className = `carousel-item${index === 0 ? " active" : ""}`;
@@ -171,14 +170,13 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
 
     // Loader
     const loader = document.createElement("div");
-    loader.className = "d-flex justify-content-center align-items-center";
-    loader.style.height = "400px";
+    loader.className = "d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle";
     loader.innerHTML = `<div class="spinner-border text-secondary" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div>`;
     div.appendChild(loader);
 
-    // Image element
+    // Image element (hidden initially)
     const img = document.createElement("img");
     img.src = url;
     img.className = "d-block w-100 rounded shadow-sm";
@@ -187,13 +185,15 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
     img.style.backgroundColor = "#fff";
     img.loading = "lazy";
     img.alt = `Project Image ${index + 1}`;
+    img.style.opacity = "0"; // hide initially
+    img.style.transition = "opacity 0.3s ease";
 
-    // When image loads, replace loader
     img.onload = () => {
       loader.remove();
-      div.appendChild(img);
+      img.style.opacity = "1";
     };
 
+    div.appendChild(img);
     carouselInner.appendChild(div);
   });
 
@@ -211,7 +211,6 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
   const modal = new bootstrap.Modal(document.getElementById("projectModal"));
   modal.show();
 }
-
 
 
 
