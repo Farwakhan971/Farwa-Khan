@@ -167,29 +167,36 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
     const div = document.createElement("div");
     div.className = `carousel-item${index === 0 ? " active" : ""}`;
     div.style.position = "relative";
+    div.style.height = "400px"; // keeps loader centered
 
-    // Loader
-    const loader = document.createElement("div");
-    loader.className = "d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle";
-    loader.innerHTML = `<div class="spinner-border text-secondary" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                        </div>`;
-    div.appendChild(loader);
+    // Loader container
+    const loaderWrapper = document.createElement("div");
+    loaderWrapper.style.position = "absolute";
+    loaderWrapper.style.top = "0";
+    loaderWrapper.style.left = "0";
+    loaderWrapper.style.width = "100%";
+    loaderWrapper.style.height = "100%";
+    loaderWrapper.className = "d-flex justify-content-center align-items-center";
+    loaderWrapper.innerHTML = `<div class="spinner-border text-secondary" role="status">
+                                  <span class="visually-hidden">Loading...</span>
+                                </div>`;
+    div.appendChild(loaderWrapper);
 
     // Image element (hidden initially)
     const img = document.createElement("img");
     img.src = url;
     img.className = "d-block w-100 rounded shadow-sm";
     img.style.maxHeight = "400px";
+    img.style.height = "100%";
     img.style.objectFit = "contain";
     img.style.backgroundColor = "#fff";
     img.loading = "lazy";
     img.alt = `Project Image ${index + 1}`;
-    img.style.opacity = "0"; // hide initially
+    img.style.opacity = "0";
     img.style.transition = "opacity 0.3s ease";
 
     img.onload = () => {
-      loader.remove();
+      loaderWrapper.remove();
       img.style.opacity = "1";
     };
 
@@ -211,7 +218,6 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
   const modal = new bootstrap.Modal(document.getElementById("projectModal"));
   modal.show();
 }
-
 
 
 function toggleText(event) {
