@@ -168,7 +168,7 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
     div.className = `carousel-item${index === 0 ? " active" : ""}`;
     div.innerHTML = `<img src="${url}" class="d-block w-100 rounded shadow-sm" 
       style="max-height: 400px; object-fit: contain; background-color: #fff;" 
-      alt="Project Image ${index + 1}">`;
+      alt="Project Image ${index + 1}" loading="lazy">`;
     carouselInner.appendChild(div);
   });
 
