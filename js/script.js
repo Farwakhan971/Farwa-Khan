@@ -163,12 +163,37 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
   // Image carousel
   const carouselInner = document.getElementById("carouselInner");
   carouselInner.innerHTML = "";
+  
   imageUrls.forEach((url, index) => {
     const div = document.createElement("div");
     div.className = `carousel-item${index === 0 ? " active" : ""}`;
-    div.innerHTML = `<img src="${url}" class="d-block w-100 rounded shadow-sm" 
-      style="max-height: 400px; object-fit: contain; background-color: #fff;" 
-      alt="Project Image ${index + 1}" loading="lazy">`;
+    div.style.position = "relative";
+
+    // Loader
+    const loader = document.createElement("div");
+    loader.className = "d-flex justify-content-center align-items-center";
+    loader.style.height = "400px";
+    loader.innerHTML = `<div class="spinner-border text-secondary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>`;
+    div.appendChild(loader);
+
+    // Image element
+    const img = document.createElement("img");
+    img.src = url;
+    img.className = "d-block w-100 rounded shadow-sm";
+    img.style.maxHeight = "400px";
+    img.style.objectFit = "contain";
+    img.style.backgroundColor = "#fff";
+    img.loading = "lazy";
+    img.alt = `Project Image ${index + 1}`;
+
+    // When image loads, replace loader
+    img.onload = () => {
+      loader.remove();
+      div.appendChild(img);
+    };
+
     carouselInner.appendChild(div);
   });
 
@@ -186,6 +211,7 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
   const modal = new bootstrap.Modal(document.getElementById("projectModal"));
   modal.show();
 }
+
 
 
 
