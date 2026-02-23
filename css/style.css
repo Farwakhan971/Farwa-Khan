@@ -290,22 +290,46 @@ section {
   font-size: 27px;
 }
 
+/* Fix carousel overflow issue */
+#projectCarousel {
+  overflow: hidden;
+}
 
+/* Proper arrow positioning */
 #projectCarousel .carousel-control-prev {
-  left: -25px;
+  left: 10px;
 }
 
 #projectCarousel .carousel-control-next {
-  right: -25px;
+  right: 10px;
 }
 
+/* Arrow icon styling */
 #projectCarousel .carousel-control-prev-icon,
 #projectCarousel .carousel-control-next-icon {
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   background-size: 60% 60%;
+  padding: 20px;
 }
 
+/* Make images responsive */
+#projectCarousel .carousel-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Extra mobile fix */
+@media (max-width: 768px) {
+  #projectCarousel .carousel-control-prev {
+    left: 5px;
+  }
+
+  #projectCarousel .carousel-control-next {
+    right: 5px;
+  }
+}
 
 
 .heading{
