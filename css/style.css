@@ -311,17 +311,33 @@ section {
   border-radius: 50%;
   background-size: 60% 60%;
   padding: 20px;
+  transition: all 0.3s ease;
 }
 
-/* Make images responsive */
+#projectCarousel .carousel-control-prev-icon:hover,
+#projectCarousel .carousel-control-next-icon:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Make carousel images responsive & professional */
+#projectCarousel .carousel-item {
+  height: 450px; /* desktop height */
+}
+
 #projectCarousel .carousel-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain; /* pura image dikhe, cut nahi ho */
   display: block;
+  border-radius: 0.5rem; /* smooth edges */
 }
 
 /* Extra mobile fix */
 @media (max-width: 768px) {
+  #projectCarousel .carousel-item {
+    height: 300px; /* mobile friendly height */
+  }
+
   #projectCarousel .carousel-control-prev {
     left: 5px;
   }
