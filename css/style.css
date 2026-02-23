@@ -411,7 +411,7 @@ section {
   transform: translateY(-10px);
 }
 
-.project-img {
+..project-img {
   overflow: hidden;
 }
 
@@ -422,8 +422,11 @@ section {
   object-fit: cover;
 }
 
-.project-card:hover .project-img img {
-  transform: scale(1.1);
+/* Mobile Responsive Fix */
+@media (max-width: 768px) {
+  .project-img img {
+    height: auto;
+  }
 }
 
 .project-content {
