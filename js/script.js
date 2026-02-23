@@ -167,7 +167,6 @@ function openProjectModal(title, description, imageUrls, techStack = []) {
     const div = document.createElement("div");
     div.className = `carousel-item${index === 0 ? " active" : ""}`;
     div.style.position = "relative";
-    div.style.height = "400px"; // keeps loader centered
 
     // Loader container
     const loaderWrapper = document.createElement("div");
